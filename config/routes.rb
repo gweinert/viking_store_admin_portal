@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   
 
   resources :admin do
-    get 'dashboard/index'
-    get 'dashboard/show'
-    
-    resources :products
-    resources :categories    
+    collection do 
+      get 'dashboard/index'
+      get 'dashboard/show'
+      
+      resources :products
+      resources :categories    
+    end
   end
 
 

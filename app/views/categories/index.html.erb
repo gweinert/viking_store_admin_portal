@@ -1,1 +1,33 @@
-<h1>TEST</h1>
+
+<div class="panel panel-defualt">
+  <div class="panel-body">
+    <h2 class="text-center" >Viking Store Categories</h2>
+    <button type="button" class="btn btn-primary btn-lg btn-block">
+      <%= link_to "Create New Category", new_category_path %>
+    </button>
+    <table class="table table-striped">
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Created</td>
+        <td>Updated</td>
+        <td>SHOW</td>
+        <td>EDIT</td>
+        <td>DELETE</td>
+      </tr>
+      <% @categories.each do |c| %>
+        <tr>
+          <td><%= c.id %></td>
+          <td><%= c.name %></td>
+          <td><%= c.description %></td>
+          <td><%= c.created_at %></td>
+          <td><%= c.updated_at %></td>
+          <td><%= link_to "show", category_path(c) %></td>
+          <td><%= link_to "edit", edit_category_path(c) %></td>
+          <td><%= link_to "delete", category_path(c), :method => :delete, :confirm => "Are you sure?" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
