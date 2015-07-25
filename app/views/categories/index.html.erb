@@ -1,10 +1,10 @@
-
-<div class="panel panel-defualt">
+  <div class="bg-success"><%= flash[:success] %></div>
+  <div class="panel panel-defualt">
   <div class="panel-body">
     <h2 class="text-center" >Viking Store Categories</h2>
-    <button type="button" class="btn btn-primary btn-lg btn-block">
-      <%= link_to "Create New Category", new_category_path %>
-    </button>
+
+      <%= link_to "Create New Category", new_category_path , :class => "btn btn-primary btn-lg btn-block" %>
+
     <table class="table table-striped">
       <tr>
         <td>ID</td>

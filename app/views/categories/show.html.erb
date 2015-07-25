@@ -1,0 +1,25 @@
+<h3 class="text-center">Category: <%= @category.name %></h3>
+<hr>
+
+<table class="table table-striped">
+  <tr>
+    <td>ID</td>
+    <td>SKU</td>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Price</td>
+    <td>Created</td>
+    <td>Updated</td> 
+  </tr>
+  <% @products.each do |p| %>
+  <tr>
+    <td><%= p.id  %></td>
+    <td><%= p.sku.round  %></td>
+    <td><%= p.name  %></td>
+    <td><%= p.description  %></td>
+    <td>£<%= p.price.round(2)%></td>
+    <td><%= p.created_at  %></td>
+    <td><%= p.updated_at  %></td>
+  </tr>
+  <% end %>
+</table>

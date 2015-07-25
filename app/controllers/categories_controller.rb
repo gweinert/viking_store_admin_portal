@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @products = Product.where(:catergy_id => @category.id)
+    @products = Product.where(:category_id => @category.id)
   end
 
   def new
@@ -14,8 +14,30 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(params_hash)
-    redirect_to categories_path
+    @category = Category.new(params_hash)
+    if @category.save
+      flash[:success] = "Category Created Successfully"
+      redirect_to categories_path
+    else 
+      flash.now[:error] = "Failed to created Category. Please Try again"
+      render :new
+    end
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(params_hash)
+      redirect_to categories_path
+      flash[:success] = "Category Updated"
+    else
+      flash.now[:error] = "Failed to update. Please Try again"
+      render :edit
+    end
+
   end
 
   def destroy
