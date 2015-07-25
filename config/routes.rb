@@ -2,9 +2,14 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
   
-  get 'dashboard/index'
 
-  get 'dashboard/show'
+  resources :admin do
+    get 'dashboard/index'
+    get 'dashboard/show'
+    
+    resources :products
+    resources :categories    
+  end
 
 
 
