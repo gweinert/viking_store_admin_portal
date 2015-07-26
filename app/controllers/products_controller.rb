@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     @product = Product.new(params_hash)
     @product.sku = Faker::Code.ean.to_i
     if @product.save
-      fail
+      
       flash[:success] = "Product Created Successfully"
       redirect_to products_path
     else 
