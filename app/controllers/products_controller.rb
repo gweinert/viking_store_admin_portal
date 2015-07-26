@@ -8,17 +8,21 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @products = Product.where(:product_id => @product.id)
+    flash[:success] = "Show page coming soon"
+    redirect_to products_path
   end
 
   def new
     @product = Product.new
-    @category_names = categories_array 
+    @category_names = categories_array
+    @categories = Category.all 
   end
 
   def create
     @product = Product.new(params_hash)
     @product.sku = Faker::Code.ean.to_i
     if @product.save
+      fail
       flash[:success] = "Product Created Successfully"
       redirect_to products_path
     else 
@@ -29,7 +33,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @category_names = categories_array 
+    @categories = Category.all
 
   end
 

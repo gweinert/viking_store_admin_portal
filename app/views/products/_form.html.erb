@@ -25,9 +25,7 @@
       <%= get_error_message(:price, @product) if @product.errors[:price] %>
     </div>
   </div>
-  <select>
-    <option value = "#{<%= options_for_select(@category_names) %>}"></option>
-  </select>
+  <%= collection_select(:product, :category_id, @categories,:id, :name ) %>
   <%= f.submit "Create", :class => "btn btn-primary" %>
 <% end %>
 
