@@ -21,8 +21,8 @@
           <td><%= c.id %></td>
           <td><%= c.name %></td>
           <td><%= c.description %></td>
-          <td><%= c.created_at %></td>
-          <td><%= c.updated_at %></td>
+          <td><%= c.created_at.strftime("%m/%d/%Y") %></td>
+          <td><%= c.updated_at.strftime("%m/%d/%Y") %></td>
           <td><%= link_to "show", category_path(c) %></td>
           <td><%= link_to "edit", edit_category_path(c) %></td>
           <td><%= link_to "delete", category_path(c), :method => :delete, :confirm => "Are you sure?" %></td>
