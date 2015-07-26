@@ -1,4 +1,9 @@
 class Product < ActiveRecord::Base
+  validates :sku,
+              :uniqueness => {:message => "Needs to be unique"}
+
+  validates :name, :description, :price, :presence => { :message => "Can not be blank" }
+
 
 	def self.new_products(input_day)
 		self.where("created_at > ?", input_day.days.ago).count

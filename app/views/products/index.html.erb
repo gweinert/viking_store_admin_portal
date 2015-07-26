@@ -1,5 +1,9 @@
-<h3 class="text-center">Category: <%= @category.name %></h3>
-<hr>
+<div class="bg-success"><%= flash[:success] %></div>
+  <div class="panel panel-defualt">
+  <div class="panel-body">
+    <h2 class="text-center" >Viking Store Products</h2>
+
+      <%= link_to "Create New Product", new_product_path , :class => "btn btn-primary btn-lg btn-block" %>
 
 <table class="table table-striped">
   <tr>
@@ -8,11 +12,9 @@
     <td>Name</td>
     <td>Description</td>
     <td>Price</td>
+    <td>Category ID</td>
     <td>Created</td>
-    <td>Updated</td>
-    <td>SHOW</td>
-    <td>EDIT</td>
-    <td>DELETED\</td>
+    <td>Updated</td> 
   </tr>
   <% @products.each do |p| %>
   <tr>
@@ -21,6 +23,7 @@
     <td><%= p.name  %></td>
     <td><%= p.description  %></td>
     <td>£<%= p.price.round(2)%></td>
+    <td> <%= p.category_id %></td>
     <td><%= p.created_at  %></td>
     <td><%= p.updated_at  %></td>
     <td><%= link_to "show", product_path(p) %></td>

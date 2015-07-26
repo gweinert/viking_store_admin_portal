@@ -15,13 +15,13 @@
     <a href="#">Orders</a>
 </li>
 <li>
-    <a href="#">Products</a>
+    <%= link_to "Products", products_path %>
 </li>
 <li>
-    <%= link_to "Categories", categories_path(1) %>
+    <%= link_to "Categories", categories_path %>
 </li>
 <li><hr>
-    <a href="#">Analytics Dashboard</a>
+    <%= link_to "Analytics Dashbord", dashboard_index_admin_index_path %>
 </li>
 </ul>
 </div>
