@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-
+  include CategoriesHelper
+  
   def index
     @products = Product.all
   end
@@ -11,10 +12,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @category_names = categories_array 
   end
 
   def create
     @product = Product.new(params_hash)
+    @product.sku = Faker::Code.ean.to_i
     if @product.save
       flash[:success] = "Product Created Successfully"
       redirect_to products_path
@@ -26,6 +29,8 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @category_names = categories_array 
+
   end
 
   def update
