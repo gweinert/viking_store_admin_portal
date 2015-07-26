@@ -2,18 +2,16 @@
 <hr>
 
 <table class="table table-striped">
-  <tr>
-    <td>ID</td>
-    <td>SKU</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Price</td>
-    <td>Created</td>
-    <td>Updated</td>
-    <td>SHOW</td>
-    <td>EDIT</td>
-    <td>DELETED\</td>
-  </tr>
+    <th>ID</th>
+    <th>SKU</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th>SHOW</th>
+    <th>EDIT</th>
+    <th>DELETED\</th>
   <% @products.each do |p| %>
   <tr>
     <td><%= p.id  %></td>

@@ -6,16 +6,16 @@
       <%= link_to "Create New Product", new_product_path , :class => "btn btn-primary btn-lg btn-block" %>
 
 <table class="table table-striped">
-  <tr>
-    <td>ID</td>
-    <td>SKU</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Price</td>
-    <td>Category ID</td>
-    <td>Created</td>
-    <td>Updated</td> 
-  </tr>
+  
+    <th>ID</th>
+    <th>SKU</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category ID</th>
+    <th>Created</th>
+    <th>Updated</th> 
+  
   <% @products.each do |p| %>
   <tr>
     <td><%= p.id  %></td>
