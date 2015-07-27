@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
+  belongs_to :addresses
 
   def self.get_top_cities
     result = []
