@@ -69,7 +69,7 @@
   <div class="panel-body">
     <h4>Admin Actions for <%= @user.name %></h4>
      <%= link_to "Create Order", new_user_order_path(@user), :disabled => "true", :class => "btn btn-primary btn-lg btn-block" %>
-     <%= link_to "Create Address", new_user_address_path(@user), :disabled => "true", :class => "btn btn-primary btn-lg btn-block" %>
+     <%= link_to "Create Address", new_user_address_path(@user), :class => "btn btn-primary btn-lg btn-block" %>
   </div>
 </div>
 

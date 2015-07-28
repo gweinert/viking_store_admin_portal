@@ -1,27 +1,28 @@
 
 <%= form_for @address do |f| %>
   <div class="form-group">
-    <%= f.label :street_address %>
+    <%= f.label "Street Address" %>
     <%= f.text_field :street_address, :class => "form-control" %>
     <div class="bg-danger"> 
       <%= get_error_message(:street_address, @address) if @address.errors[:street_address] %> 
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, :class => "form-control" %>
+    <%= f.label "Zip Code" %>
+    <%= f.text_field :zip_code, :class => "form-control" %>
     <div class="bg-danger"> 
-      <%= get_error_message(:description, @product) if @product.errors[:description] %>
+      <%= get_error_message(:zip_code, @address) if @address.errors[:zip_code] %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :price %>
-    <%= f.text_area :price, :class => "form-control" %>
-    <div class="bg-danger"> 
-      <%= get_error_message(:price, @product) if @product.errors[:price] %>
-    </div>
+    <%= f.label "City: " %>
+    <%= collection_select(:address, :city_id, @cities, :id, :name ) %>
   </div>
-  <%= collection_select(:product, :category_id, @categories,:id, :name ) %>
+  <div class="form-group">
+    <%= f.label "State: " %>
+    <%= collection_select(:address, :state_id, @states, :id, :name ) %>
+  </div>
+  <%= f.hidden_field :user_id, value: "#{@user.id}" %>
   <%= f.submit "Create", :class => "btn btn-primary" %>
 <% end %>
 
