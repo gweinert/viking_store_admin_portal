@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
-
-  belongs_to :user
+  has_many :products, :class_name => "OrderContent"
+  has_many :categories, :class_name => "OrderContent"
+  belongs_to :user, :dependent => :delete
 
 def self.new_orders(start_day, end_day)
 	self.where("checkout_date > ? AND checkout_date <= ?", start_day, end_day).count

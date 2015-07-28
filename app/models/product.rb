@@ -1,4 +1,7 @@
 class Product < ActiveRecord::Base
+  belongs_to :category
+  has_many :orders, :class_name => "OrderContent"
+
   validates :sku,
               :uniqueness => {:message => "Needs to be unique"}
 

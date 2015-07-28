@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-  belongs_to :addresses
+  belongs_to :addresses,  :dependent => :destroy
 
   def self.get_top_cities
     result = []
