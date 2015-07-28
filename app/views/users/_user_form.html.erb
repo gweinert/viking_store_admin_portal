@@ -4,25 +4,24 @@
     <%= f.label :first_name %>
     <%= f.text_field :first_name, :class => "form-control" %>
     <div class="bg-danger"> 
-      <%= get_error_message(:first)name, @user) if @user.errors[:name] %> 
+      <%= get_error_message(:first_name, @user) if @user.errors[:first_name] %> 
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, :class => "form-control" %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :class => "form-control" %>
     <div class="bg-danger"> 
-      <%= get_error_message(:description, @product) if @product.errors[:description] %>
+      <%= get_error_message(:last_name, @user) if @user.errors[:last_name] %> 
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :price %>
-    <%= f.text_area :price, :class => "form-control" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, :class => "form-control" %>
     <div class="bg-danger"> 
-      <%= get_error_message(:price, @product) if @product.errors[:price] %>
+      <%= get_error_message(:email, @user) if @user.errors[:email] %>
     </div>
   </div>
-  <%= collection_select(:product, :category_id, @categories,:id, :name ) %>
-  <%= f.submit "Create", :class => "btn btn-primary" %>
+    <%= f.submit "Create", :class => "btn btn-primary" %>
 <% end %>
 
 

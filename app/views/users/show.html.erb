@@ -1,0 +1,31 @@
+<h3 class="text-center">User: <%= @user.id %></h3>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>User Personal Information</h4>
+    <table class="table-stripped">
+      <tr>
+        <td>First Name</td>
+        <td><%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><%= @user.last_name %></td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Default Billing Address</td>
+        <td><%= @user.billing_address %></td>
+      </tr>
+      <tr>
+        <td>Default Shipping Address</td>
+        <td><%= @user.shipping_address %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
