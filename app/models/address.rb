@@ -7,4 +7,8 @@ class Address < ActiveRecord::Base
   belongs_to :city
   belongs_to :state
 
+  def order_count
+    Order.where("shipping_id = ? OR billing_id = ?", id, id).count
+  end
+
 end

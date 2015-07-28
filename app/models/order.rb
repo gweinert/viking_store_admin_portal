@@ -98,4 +98,5 @@ def value
   end
   sum
 end
+
 end

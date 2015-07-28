@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_one :credit_card, dependent: :destroy
   has_many :orders
 
+  validates :first_name, :last_name, :email,
+            :presence => {:message => "Cannot be blank"}
+  validates :email,
+            :uniqueness => {:message => "Must be unique"}
+
   # scope :completed_orders, -> { where("checkout_date IS NOT NULL") }
 
   def self.new_users(input_day)
