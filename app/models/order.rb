@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :order_contents
   has_many :products, :through => :order_contents
+  belongs_to :user
 
 def self.new_orders(start_day, end_day)
 	self.where("checkout_date > ? AND checkout_date <= ?", start_day, end_day).count
