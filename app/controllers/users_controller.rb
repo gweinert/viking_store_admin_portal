@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @orders = @user.orders
   end
 
   private
@@ -28,5 +29,6 @@ class UsersController < ApplicationController
   def params_hash
     params.require(:user).permit(:first_name, :last_name, :email)
   end
+
 
 end

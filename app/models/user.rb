@@ -21,5 +21,10 @@ class User < ActiveRecord::Base
     self.orders.where("checkout_date IS NOT NULL").count
   end
 
+  def get_address(type = :shipping_address)
+    address=self.send(type)
+    "#{address.street_address} #{address.city.name}, #{address.state.name} #{address.zip_code}"
+  end
+
 end
 

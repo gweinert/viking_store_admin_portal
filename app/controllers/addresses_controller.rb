@@ -1,0 +1,26 @@
+class AddressesController < ApplicationController
+
+  def new
+    @user = User.find(params[:user_id])
+    @address = Address.new
+   
+  end
+
+  def create
+    if @user.addresses.create(params_list)
+      flash[:success] = "Address Created!"
+      redirect_to user_path(@user)
+    else
+      flash[:error] = "Error: Address Not Created"
+      render :new
+    end
+    
+  end
+
+  private
+
+  def params_list
+    params.require(:address).permit(:street_address, :zip_code, :city_id, :state_id)
+  end
+
+end

@@ -83,6 +83,19 @@ def self.most_orders_placed(input=nil)
   return [table[0][:counter], "#{table[0][:first_name]} #{table[0][:last_name]}"]
 end
 
+def status
+  if self.checkout_date.nil?
+    "<p style='color: red'>UNPLACED</p>" 
+  else
+    "PLACED"
+  end
+end
 
-
+def value
+  sum = 0
+  self.order_contents.each do |oc|
+    sum += oc.quantity * oc.product.price
+  end
+  sum
+end
 end
