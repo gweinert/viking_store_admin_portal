@@ -1,5 +1,6 @@
 class City < ActiveRecord::Base
-
+  has_many :addresses
+  
   def self.get_top_cities
     result = []
     table = User.joins("JOIN addresses ON users.billing_id = addresses.id")

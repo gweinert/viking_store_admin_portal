@@ -1,8 +1,11 @@
 class Product < ActiveRecord::Base
-  validates :sku,
-              :uniqueness => {:message => "Needs to be unique"}
+  belongs_to :category
+  has_many :order_contents
+  has_many :orders , :through => :order_contents
 
-  validates :name, :description, :price, :presence => { :message => "Can not be blank" }
+
+  validates  :name, :sku, {:uniqueness => true , :presence => true}
+  validates  :description,  :presence => true
 
 
 	def self.new_products(input_day)

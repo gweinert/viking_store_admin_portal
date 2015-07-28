@@ -1,4 +1,5 @@
 class State < ActiveRecord::Base
+  has_many :addresses
 
   def self.get_top_states
     result = []
