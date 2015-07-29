@@ -1,0 +1,76 @@
+<h1>Order <%= @order.id %> </h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2>Logistical Inforamtion</h2>
+    <h3>Basic Information</h3>
+    <table class="table">
+      <tr>
+        <td>Customer ID: </td>
+        <td><%= @order.user_id %></td>
+    </tr>
+    <tr>
+      <td> Customer: </td>
+      <td> <%= link_to @order.user.name, user_path(@order.user)  %></td>
+    </tr>
+    <tr>
+      <td>Email: </td>
+      <td><%= @order.user.email %></td>
+    </tr>
+    <tr>
+      <td>Date Placed: </td>
+      <td><%= @order.checkout_date.strftime("%m/%d/%Y") if @order.checkout_date%></td>
+    </tr>
+    <tr>
+      <td># Products</td>
+      <td><%= @order.products.count %></td>
+    </tr>
+    <tr>
+      <td>Order Value</td>
+      <td><%= @order.value %></td>
+    </tr></table>
+    <%= link_to "Edit Customer Profile", edit_user_path(@order.user)  %>
+    <h3>Order Status:</h3>
+    <h2><%= @order.status.html_safe %></h2>
+    <h3>Shipping Address</h3>
+    <table class="table">
+      <tr>
+        <td>Street</td>
+        <td><%= @order.shipping_address.street_address %></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><%= @order.shipping_address.city.name %></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><%= @order.shipping_address.state.name %></td>
+      </tr>
+    </table>
+    <h3>Billing Address</h3>
+    <table class="table">
+      <tr>
+        <td>Street</td>
+        <td><%= @order.billing_address.street_address %></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><%= @order.billing_address.city.name %></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><%= @order.billing_address.state.name %></td>
+      </tr>
+    </table>
+    <h3>Billing Card</h3>
+    <table class="table">
+      <td>
+        Last 4 Digits:
+      </td>
+      <td>
+        <%= @order.user.credit_card.card_number %>
+      </td>
+    </table>  
+       
+  </div>
+</div>
+

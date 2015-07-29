@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :orders 
       resources :users do
         resources :addresses, :only => [:index, :new, :create]
-        resources :orders
+        resources :orders,    :only => [:index, :new, :create]
       end
     end
   end

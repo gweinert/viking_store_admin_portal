@@ -27,9 +27,9 @@
   <tr>
     <td><%= o.id  %></td>
     <td><%= link_to o.user_id, user_orders_path(o.user)  %></td>
-    <td><%= o.shipping_address.street_address %></td>
-    <td><%= o.shipping_address.city.name %></td>
-    <td><%= o.shipping_address.state.name %></td>
+    <td><%= o.shipping_address.street_address if o.shipping_address %></td>
+    <td><%= o.shipping_address.city.name if o.shipping_address%></td>
+    <td><%= o.shipping_address.state.name if o.shipping_address%></td>
     <td><%= o.value %></td>
     <td><%= o.status.html_safe %></td>
     <td><%= o.checkout_date.strftime("%m/%d/%Y") unless o.checkout_date.nil?  %></td>
