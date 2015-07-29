@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   has_many :addresses, dependent: :destroy
   belongs_to :shipping_address, :class_name => "Address",
                                 :foreign_key => "shipping_id"
@@ -13,11 +14,6 @@ class User < ActiveRecord::Base
             :uniqueness => {:message => "Must be unique"}
 
   # scope :completed_orders, -> { where("checkout_date IS NOT NULL") }
-
-  has_many :addresses
-  has_many :orders
-  #has_many :products bonues come back to it
-  
 
   def self.new_users(input_day)
     self.where("created_at > ?", input_day.days.ago).count

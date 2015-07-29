@@ -2,8 +2,6 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :order_contents
   has_many :orders , :through => :order_contents
-
-
   validates  :name, :sku, {:uniqueness => true , :presence => true}
   validates  :description,  :presence => true
 
