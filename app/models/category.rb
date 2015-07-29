@@ -1,7 +1,6 @@
 class Category < ActiveRecord::Base
-  has_many :products, :class_name => :Product
-  #has_many :orders, to be done
 
+  has_many :products
   validates :name, :description,
             :presence => {:message => "Cannot be blank"}
 

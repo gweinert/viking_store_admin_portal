@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @products = Product.where(:product_id => @product.id)
+    @products = @product.orders
     flash[:success] = "Show page coming soon"
     redirect_to products_path
   end

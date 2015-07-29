@@ -1,0 +1,40 @@
+<div class="bg-success"><%= flash[:success] %></div>
+<div class="bg-danger"><%= flash[:error] %></div>
+  <div class="panel panel-defualt">
+  <div class="panel-body">
+    <h2 class="text-center" >Addresses</h2>
+
+<% if  @user_id %>
+<%= link_to "Create Address", 
+new_user_address_path(User.find(@user_id)), :class => "btn btn-primary btn-lg btn-block" %>
+<% end %>
+
+
+<table class="table table-striped">
+  
+    <th>ID</th>
+    <th>User</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Orders</th>
+    <th>Created At</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  
+  <% @addresses.each do |a| %>
+  <tr>
+    <td><%= a.id  %></td>
+    <td><%= link_to a.user.name, user_addresses_path(a.user)  %></td>
+    <td><%= a.street_address %></td>
+    <td><%= a.city.name %></td>
+    <td><%= a.state.name %></td>
+    <td><%= a.order_count %></td>
+    <td><%= a.created_at.strftime("%m/%d/%Y")  %></td>
+    <td><%= link_to "show", address_path(a) %></td>
+    <td><%= link_to "edit", edit_address_path(a) %></td>
+    <td><%= link_to "delete", address_path(a), :method => :delete, :confirm => "Are you sure?" %></td>
+  </tr>
+  <% end %>
+</table>

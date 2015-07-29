@@ -1,7 +1,9 @@
 class Order < ActiveRecord::Base
-  has_many :products, :class_name => "OrderContent"
-  has_many :categories, :class_name => "OrderContent"
-  belongs_to :user, :dependent => :delete
+
+  has_many :order_contents
+  has_many :products, :through => :order_contents
+  belongs_to :user
+
 
 def self.new_orders(start_day, end_day)
 	self.where("checkout_date > ? AND checkout_date <= ?", start_day, end_day).count
@@ -9,7 +11,9 @@ end
 
 def self.revenue_table(start_day=99999999.days.ago, end_day=0.days.ago)
 	# if input is given:
-  table = self.where("checkout_date > ? AND checkout_date <= ?", start_day, end_day).joins("JOIN order_contents ON orders.id = order_contents.order_id").joins("JOIN products ON products.id = order_contents.product_id")
+  table = self.where("checkout_date > ? AND checkout_date <= ?", start_day, end_day)
+              .joins("JOIN order_contents ON orders.id = order_contents.order_id")
+              .joins("JOIN products ON products.id = order_contents.product_id")
   # if no input, get all orders with checkout date
   # table = self.where("checkout_date IS NOT NULL").joins("JOIN order_contents ON orders.id = order_contents.order_id").joins("JOIN products ON products.id = order_contents.product_id") unless input
   return table.select(:order_id, :quantity, :product_id, :price)
@@ -81,6 +85,20 @@ def self.most_orders_placed(input=nil)
   return [table[0][:counter], "#{table[0][:first_name]} #{table[0][:last_name]}"]
 end
 
+def status
+  if self.checkout_date.nil?
+    "<p style='color: red'>UNPLACED</p>" 
+  else
+    "PLACED"
+  end
+end
 
+def value
+  sum = 0
+  self.order_contents.each do |oc|
+    sum += oc.quantity * oc.product.price
+  end
+  sum
+end
 
 end

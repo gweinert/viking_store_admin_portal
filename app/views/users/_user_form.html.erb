@@ -1,0 +1,35 @@
+
+<%= form_for @user do |f| %>
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :class => "form-control" %>
+    <div class="bg-danger"> 
+      <%= get_error_message(:first_name, @user) if @user.errors[:first_name] %> 
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :class => "form-control" %>
+    <div class="bg-danger"> 
+      <%= get_error_message(:last_name, @user) if @user.errors[:last_name] %> 
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, :class => "form-control" %>
+    <div class="bg-danger"> 
+      <%= get_error_message(:email, @user) if @user.errors[:email] %>
+    </div>
+  </div>
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
+<% end %>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+<div class="bg-success"><%= flash[:success] %></div>
+<div class="bg-danger"><%= flash[:error] %></div>
+
+<h3 class="text-center">User: <%= @user.id %></h3>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>User Personal Information</h4>
+    <table class="table col-sm-12 user-info-table">
+      <tr>
+        <td>First Name</td>
+        <td><%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><%= @user.last_name %></td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Default Billing Address</td>
+        <td><%= @user.get_address(:billing_address) %></td>
+      </tr>
+      <tr>
+        <td>Default Shipping Address</td>
+        <td><%= @user.get_address(:shipping_address) %></td>
+      </tr>
+    </table>
+    <%= link_to "All Addresses", user_addresses_path(@user) %><br>
+    <%= link_to "Edit #{@user.name}'s Information", edit_user_path(@user) %>
+    <br>
+    <%= link_to "Delete #{@user.name}", user_path(@user), method: :delete %>
+    <br>
+    <%# link_to "View Saved Addresses", user_addresses(@user) %>
+    <br>
+    <%# link_to "View Unplaced Orders (Cart)", "#" %>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>Credit Card Information</h4>
+    <% if @user.credit_card.nil? %>
+      <h4><strong>No Credit Card on File</strong></h4>
+    <% else %>
+      <table class="table">
+        <tr>
+          <td>Nick Name</td>
+          <td><%= @user.credit_card.nickname %></td>
+        </tr>
+        <tr>
+          <td>Name on Card</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>Number</td>
+          <td><%= @user.credit_card.card_number %></td>
+        </tr>
+        <tr>
+          <td>Expiration</td>
+          <td><%= "#{@user.credit_card.exp_month}/#{@user.credit_card.exp_year}" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>Admin Actions for <%= @user.name %></h4>
+     <%= link_to "Create Order", new_user_order_path(@user), :disabled => "true", :class => "btn btn-primary btn-lg btn-block" %>
+     <%= link_to "Create Address", new_user_address_path(@user), :class => "btn btn-primary btn-lg btn-block" %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class = "panel-body">
+    <h4>Order History</h4>
+    <table class="table table-striped">
+      <th>ID</th>
+      <th>Order Date</th>
+      <th>Order Value</th>
+      <th>Status</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
+
+      <% @orders.each do |o| %>
+        <tr>
+          <td><%= o.id %></td>
+          <td><%= o.created_at.strftime("%m/%d/%Y") %></td>
+          <td>£<%= o.value %></td>
+          <td><%= o.status.html_safe %></td>
+          <td><%= link_to "Show", user_order_path(@user, o) %></td>
+          <td><%= link_to "Edit", edit_user_order_path(@user, o) %></td>
+          <td><%= link_to "Delete", user_order_path(@user, o), method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+

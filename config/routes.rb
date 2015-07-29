@@ -9,9 +9,16 @@ Rails.application.routes.draw do
       get 'dashboard/show'
       
       resources :products
-      resources :categories    
+      resources :categories
+      resources :addresses
+      resources :orders 
+      resources :users do
+        resources :addresses, :only => [:index, :new, :create]
+        resources :orders
+      end
     end
   end
+
 
 
 

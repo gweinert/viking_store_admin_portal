@@ -1,13 +1,39 @@
 class User < ActiveRecord::Base
-  has_many :addresses
+
+  has_many :addresses, dependent: :destroy
+  belongs_to :shipping_address, :class_name => "Address",
+                                :foreign_key => "shipping_id"
+  belongs_to :billing_address, :class_name => "Address",
+                                :foreign_key => "billing_id"
+  has_one :credit_card, dependent: :destroy
   has_many :orders
-  has_many :products, through: :order_contents, source: :product
-  belongs_to :billing_address, :foreign_key => :billing_id, :class_name => "Address"
-  belongs_to :shipping_address, :foreign_key => :shipping_id, :class_name => "Address"
-  
+
+  validates :first_name, :last_name, :email,
+            :presence => {:message => "Cannot be blank"}
+  validates :email,
+            :uniqueness => {:message => "Must be unique"}
+
+  # scope :completed_orders, -> { where("checkout_date IS NOT NULL") }
 
   def self.new_users(input_day)
     self.where("created_at > ?", input_day.days.ago).count
+  end
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def completed_orders
+    self.orders.where("checkout_date IS NOT NULL").count
+  end
+
+  def get_address(type = :shipping_address)
+    if self.send(type).nil? 
+      return "No #{type.to_s} on file"
+    else
+      address = self.send(type) 
+      return "#{address.street_address} #{address.city.name}, #{address.state.name} #{address.zip_code}"
+    end
   end
 
 end
