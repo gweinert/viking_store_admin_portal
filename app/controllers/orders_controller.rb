@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
-  end
-
-  def new
-    @order = Order.new
+    if params[:user_id]
+      @user_id = params[:user_id]
+      @user = User.find(@user_id)
+      @orders = Order.where("user_id = ?", params[:user_id])
+    else
+      @orders = Order.all
+    end
   end
 
   def create
@@ -16,6 +18,7 @@ class OrdersController < ApplicationController
     else
       flash[:error] = "Failed to Create Order!"
       render :new
+    end
   end
 
   def edit
@@ -30,6 +33,7 @@ class OrdersController < ApplicationController
     else
       flash[:error] = "Could not Update Order"
       render :edit
+    end
   end
 
   def destroy

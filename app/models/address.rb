@@ -6,6 +6,7 @@ class Address < ActiveRecord::Base
                           :class_name => "User"
   belongs_to :city
   belongs_to :state
+  has_many :orders       
 
   def order_count
     Order.where("shipping_id = ? OR billing_id = ?", id, id).count

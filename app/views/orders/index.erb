@@ -1,0 +1,41 @@
+<div class="bg-success"><%= flash[:success] %></div>
+<div class="bg-danger"><%= flash[:error] %></div>
+  <div class="panel panel-defualt">
+  <div class="panel-body">
+    <h2 class="text-center" > <%= "#{@user.name}'s'" if @user %> Orders</h2>
+
+    <div "text-center">
+      <h4><em>Create new orders from within <%= link_to "User", users_path %> profiles</em></h4>
+    </div>
+
+
+<table class="table table-striped">
+
+    <th>ID</th>
+    <th>UserID</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Total Value</th>
+    <th>Status</th>
+    <th>Date Placed</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+
+  <% @orders.each do |o| %>
+  <tr>
+    <td><%= o.id  %></td>
+    <td><%= link_to o.user_id, user_orders_path(o.user)  %></td>
+    <td><%= o.shipping_address.street_address %></td>
+    <td><%= o.shipping_address.city.name %></td>
+    <td><%= o.shipping_address.state.name %></td>
+    <td><%= o.value %></td>
+    <td><%= o.status.html_safe %></td>
+    <td><%= o.checkout_date.strftime("%m/%d/%Y") unless o.checkout_date.nil?  %></td>
+    <td><%= link_to "show", order_path(o) %></td>
+    <td><%= link_to "edit", edit_order_path(o) %></td>
+    <td><%= link_to "delete", order_path(o), :method => :delete, :confirm => "Are you sure?" %></td>
+  </tr>
+  <% end %>
+</table>
