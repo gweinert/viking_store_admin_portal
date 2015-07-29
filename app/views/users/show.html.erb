@@ -29,6 +29,7 @@
         <td><%= @user.get_address(:shipping_address) %></td>
       </tr>
     </table>
+    <%= link_to "All Addresses", user_addresses_path(@user) %><br>
     <%= link_to "Edit #{@user.name}'s Information", edit_user_path(@user) %>
     <br>
     <%= link_to "Delete #{@user.name}", user_path(@user), method: :delete %>

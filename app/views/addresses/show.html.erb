@@ -1,0 +1,43 @@
+<div class="bg-success"><%= flash[:success] %></div>
+<div class="bg-danger"><%= flash[:error] %></div>
+
+<h3 class="text-center"> <%= @address.user.name %>'s Address</h3>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4><%= @address.user.name %></h4>
+    <table class="table col-sm-12 user-info-table">
+      <tr>
+        <td>Owner ID</td>
+        <td><%= @address.user_id %></td>
+      </tr>
+      <tr>
+        <td>Owner Name</td>
+        <td><%= link_to @address.user.name, user_path(@address.user) %></td>
+      </tr>
+      <tr>
+        <td>Street</td>
+        <td><%= @address.street_address %></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><%= @address.city.name %></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td><%= @address.state.name %></td>
+      </tr>
+      <tr>
+        <td>Zip Code</td>
+        <td><%= @address.zip_code %></td>
+      </tr>
+    </table>
+    <%= link_to "Edit Address", edit_address_path(@address) %>
+    <br>
+    <%= link_to "Delete Address", address_path(@address), method: :delete %>
+    <br>
+
+  </div>
+</div>
+

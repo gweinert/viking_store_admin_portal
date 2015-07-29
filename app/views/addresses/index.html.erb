@@ -4,7 +4,11 @@
   <div class="panel-body">
     <h2 class="text-center" >Addresses</h2>
 
-      <h4><em>Create new addresses from within <%= link_to "user", users_path %> profiles</em></h4>
+<% if  @user_id %>
+<%= link_to "Create Address", 
+new_user_address_path(User.find(@user_id)), :class => "btn btn-primary btn-lg btn-block" %>
+<% end %>
+
 
 <table class="table table-striped">
   
@@ -22,7 +26,7 @@
   <% @addresses.each do |a| %>
   <tr>
     <td><%= a.id  %></td>
-    <td><%= a.user.name  %></td>
+    <td><%= link_to a.user.name, user_addresses_path(a.user)  %></td>
     <td><%= a.street_address %></td>
     <td><%= a.city.name %></td>
     <td><%= a.state.name %></td>

@@ -27,8 +27,12 @@ class User < ActiveRecord::Base
   end
 
   def get_address(type = :shipping_address)
-    address=self.send(type)
-    "#{address.street_address} #{address.city.name}, #{address.state.name} #{address.zip_code}"
+    if self.send(type).nil? 
+      return "No #{type.to_s} on file"
+    else
+      address = self.send(type) 
+      return "#{address.street_address} #{address.city.name}, #{address.state.name} #{address.zip_code}"
+    end
   end
 
 end

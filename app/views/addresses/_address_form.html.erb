@@ -1,5 +1,11 @@
 
 <%= form_for @address do |f| %>
+
+  <% if @user %>
+  <h4>USER ID:<%= @user.id %></h4>
+  <% end %>
+  
+
   <div class="form-group">
     <%= f.label "Street Address" %>
     <%= f.text_field :street_address, :class => "form-control" %>
