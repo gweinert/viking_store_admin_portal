@@ -10,23 +10,28 @@ class OrdersController < ApplicationController
     end
   end
 
+  def new
+    @user = User.find(params[:user_id])
+    @order = @user.orders.new
+  end
+
   def show
     @order = Order.find(params[:id])
   end
 
   def create
     @order = Order.new(params_list)
-    if @order.save
-      flash[:success] = "Order Created!"
-      redirect_to order_path
-    else
-      flash[:error] = "Failed to Create Order!"
-      render :new
-    end
+    @order.save
+      # flash[:success] = "Order Created!"
+      redirect_to edit_user_order_path(@order.user.id, @order)
+    # else
+      # flash[:error] = "Failed to Create Order!"
+      # render :new
+    # end
   end
 
   def edit
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:user_id])
   end
 
   def update
@@ -50,4 +55,14 @@ class OrdersController < ApplicationController
       redirect_to orders_path
     end
   end
+
+  private
+
+    def params_list
+      params.require(:order).permit(:checkout_date, :user_id, 
+        :shipping_id, :billing_id)
+    end
+
+
+
 end

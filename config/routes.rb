@@ -10,11 +10,11 @@ Rails.application.routes.draw do
       
       resources :products
       resources :categories
-      resources :addresses
-      resources :orders 
+      resources :addresses, :except => [:new]
+      resources :orders, :except => [:new]
       resources :users do
         resources :addresses, :only => [:index, :new, :create]
-        resources :orders,    :only => [:index, :new, :create]
+        resources :orders
       end
     end
   end
